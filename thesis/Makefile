@@ -3,7 +3,7 @@ tmp:
 	bibtex thesis
 	pdflatex -interaction=batchmode thesis
 	pdflatex -interaction=batchmode thesis
-	open thesis.pdf
+	mv thesis.pdf ../documentation.pdf
 
 all: *.tex paper.bib grammarware.bib Makefile
 	pdflatex paper

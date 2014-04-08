@@ -18,7 +18,7 @@
 
 \author{Vadim Zaytsev}
 \authemail{vadim@grammarware.net}
-% \host{FacePalmBeach, \url{http://grammarware.github.io}}
+% \host{Grammarware, Inc., \url{http://grammarware.github.io}}
 
 \abstract{
   This section summarises the content of the thesis for potential readers who do not have time to read it whole,
@@ -84,7 +84,7 @@ By default, the date inserted in your PDF is the day of the build, e.g., ``March
 \end{verbatim}
 \end{snippet}
 
-or even
+The argument is just a string, the format is unrestricted:
 
 \begin{snippet}
 \begin{verbatim}
@@ -100,7 +100,7 @@ is the organisation guaranteeing your degree.
 
 \begin{snippet}
 \begin{verbatim}
-\host{FacePalmBeach, \url{http://grammarware.github.io}}
+\host{Grammarware, Inc., \url{http://grammarware.github.io}}
 \end{verbatim}
 \end{snippet}
 
@@ -132,7 +132,7 @@ How these three options look, you can see from \autoref{fig:titles}.
   \fbox{\includegraphics[width=.25\textwidth]{figures/title2.pdf}}
   \hfill
   \fbox{\includegraphics[width=.25\textwidth]{figures/title3.pdf}}
-  \caption{A hypothetical thesis title page without a cover picture (on the left), with an overly large one (in the cenre) and with a tiny pic (on the right).}
+  \caption{A hypothetical thesis title page without a cover picture (on the left), with an overly large one (in the centre) and with a tiny pic (on the right).}
   \label{fig:titles}
 \end{figure}
 
@@ -288,8 +288,197 @@ these differences.
     \item[Drawing conclusions across studies]
 \end{description}
 
-NB: this section contains portions of text repeated directly from Carver~\cite{Carver10}.
-    Do not do this for your thesis.
+NB: this section contains portions of text repeated directly from Carver~\cite{Carver10} and 
+only slightly massaged. Do not do this for your thesis, write your own thoughts down.
+
+\section{\LaTeX\ details}
+
+\subsection{Environments}
+
+A \LaTeX\ environment is something with opening and closing tags, which look
+like \cmd{begin}\{\texttt{name}\} and \cmd{end}\{\texttt{name}\}. Some useful
+environments to know:
+
+\begin{center}
+\begin{tabular}{ll}
+  \texttt{itemize}      & bullet lists\\
+  \texttt{enumerate}    & numbered lists\\
+  \texttt{description}  & definition lists\\
+  \hline
+  \texttt{center}       & centered line elements\\
+  \texttt{flushright}   & right aligned lines\\
+  \texttt{flushleft}    & left aligned lines\\
+  \hline
+  \texttt{tabular}      & table\\
+  \texttt{longtable}    & multi-page table (needs the \texttt{longtable} package)\\
+  \texttt{sideways}     & rotates some text\\
+  \texttt{quote}        & block quote\\
+  \texttt{verbatim}     & unformatted text\\
+  \texttt{minipage}     & compound box with elements inside\\
+  \texttt{boxedminipage}& compound box with elements inside and a border around it\\
+  \hline
+  \texttt{table}        & floating table (needs to have \texttt{tabular} nested inside)\\
+  \texttt{figure}       & floating figure\\
+  \texttt{sourcecode}   & floating listing\\
+  \hline
+  \texttt{equation}     & mathematical equation\\
+  \texttt{lstlisting}   & pretty-printed syntax highligted listing\\
+  \texttt{multline}     & mathematical equation spanning over multiple lines\\
+  \texttt{eqnarray}     & system of mathematical equations\\
+  \texttt{gather}       & bundled mathematical equations\\
+  \texttt{align}        & bundled and aligned mathematical equations\\
+  \texttt{array}        & matrix\\
+  \texttt{CD}           & commutative diagrams\\
+\end{tabular}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Literature}\label{sec:biblio}
+
+\textsc{Bib}TeX\ is a JSON-like format for bibliographic entries. Encode each
+source once as a \textsc{Bib}\TeX\ entry, give it a name and refer to it from
+any place in your thesis. The bibliography at the end of the thesis will be
+compiled automatically from those entries that are referenced at least once,
+it will also be automatically sorted and fancyfied (URLs, DOIs, etc).
+
+DOI is a digital object identifier, it is uniquely and immutably assigned to
+any paper published in a well-established journal or conference proceedings
+and can be used to refer to it. When used in a browser, it resolves to a
+publisher's website where paper can be obtained. Including DOIs in citations
+is considered good practice and lets the readers of your thesis get to the
+text of the paper in one click. Books do not have DOIs, only ISBNs; some
+workshop proceedings and most unofficial publications do not have DOIs. If you
+want to get a DOI assigned to your work such as a piece of code, upload it to
+\href{http://www.figshare.com}{FigShare}.
+
+Keys in key-value pairs within each \textsc{Bib}\TeX\ entry are never quoted,
+values usually are, but can also be included within curly brackets or left as
+is, which works fine for numbers (e.g., years). If you want to preserve the
+value from any adjustments (e.g., no recapitalisation in titles), use curlies
+\emph{and} quotes. Separate authors and editors by ``and'', which will
+automatically be mapped to commas or left as ``and''s as necessary.
+
+\section{Books}
+
+\cite{GruneJacobs} is just as good as the Dragon Book, but newer and has an
+awesome extended bibliography available for free.
+
+\begin{snippet}
+\begin{verbatim}
+@book{GruneJacobs,
+  author    = "D. Grune and C. J. H. Jacobs",
+  title     = "{Parsing Techniques: A Practical Guide}",
+  series    = "Monographs in Computer Science",
+  edition   = 2,
+  publisher = "Springer",
+  url       = "http://www.cs.vu.nl/~dick/PT2Ed.html",
+  year      = 2008,
+}
+\end{verbatim}
+\end{snippet}
+
+\section{Journal papers}
+
+Not all TOSEM papers are hard to read~\cite{GrammarwareAgenda}.
+
+\begin{snippet}
+\begin{verbatim}
+@article{GrammarwareAgenda,
+  author      = "Paul Klint and Ralf L{\"a}mmel and Chris Verhoef",
+  title       = "{Toward an Engineering Discipline for Grammarware}",
+  journal     = "ACM Transactions on Software Engineering Methodology (TOSEM)",
+  volume      = 14,
+  number      = 3,
+  year        = 2005,
+  pages       = "331--380",
+}
+\end{verbatim}
+\end{snippet}
+
+\section{Conference papers}
+
+There is no limit to how many grammars can be used in one paper, but the
+current record stands at 569~\cite{Micropatterns2013}.
+
+\begin{snippet}
+\begin{verbatim}
+@inproceedings{Micropatterns2013,
+  author = "Vadim Zaytsev",
+  title = "{Micropatterns in Grammars}",
+  booktitle = "{Proceedings of the Sixth International Conference on Software Language Engineering
+                (SLE 2013)}",
+  year = 2013,
+  editor = "Martin Erwig and Richard F. Paige and Eric Van Wyk",
+  volume = "8225",
+  series = "LNCS",
+  pages = "117--136",
+  address = "Switzerland",
+  month = oct,
+  publisher = "Springer International Publishing",
+  doi = "10.1007/978-3-319-02654-1_7",
+}
+\end{verbatim}
+\end{snippet}
+
+\section{Theses}
+
+The seventh PhD student of Paul Klint was Jan Rekers~\cite{Rekers92}.
+
+\begin{snippet}
+\begin{verbatim}
+@phdthesis{Rekers92,
+ author   = "J. Rekers",
+ title    = "{Parser Generation for Interactive Environments}",
+ school   = "University of Amsterdam",
+ year     = 1992,
+ url      = "http://homepages.cwi.nl/~paulk/dissertations/Rekers.pdf",
+}
+\end{verbatim}
+\end{snippet}
+
+There is also \texttt{mastersthesis} type with exactly the same structure for
+referring to Master's theses.
+
+\section{Technical reports}
+
+The original seminal work introducing two-level grammars was never published
+in any book or conference, but there is a technical report explaining
+it~\cite{Wijngaarden65}. SMC, or \emph{Stichting Matematisch Centrum}, was the
+old name of CWI fifty years ago.
+
+\begin{snippet}
+\begin{verbatim}
+@techreport{Wijngaarden65,
+        author      = "Adriaan van Wijngaarden",
+        title       = "{Orthogonal Design and Description of a Formal Language}",
+        month       = oct,
+        year        = 1965,
+        institution = "SMC",
+        type        = "{MR 76}",
+        url         = "http://www.fh-jena.de/~kleine/history/languages/VanWijngaarden-MR76.pdf",
+}
+\end{verbatim}
+\end{snippet}
+
+\section{Wikipedia}
+
+You do not refer to Wikipedia from academic writing, it works the other way around.
+
+\section{Anything else}
+
+You can refer to pretty much anything (websites, blog posts, software) through
+\texttt{misc} type of entry~\cite{ANTLR}:
+
+\begin{snippet}
+\begin{verbatim}
+@misc{ANTLR,
+ author       = "Terence Parr",
+ title        = "{ANTLR---ANother Tool for Language Recognition}",
+ howpublished = "Software",
+ url          = "http://antlr.org",
+ year         = "2008"
+}
+\end{verbatim}
+\end{snippet}
 
 {%\tiny
 \bibliographystyle{alphaurl}

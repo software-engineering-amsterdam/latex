@@ -23,6 +23,7 @@
 \usepackage{float}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{amscd}
 \usepackage[nottoc,notlot,notlof]{tocbibind}
 \usepackage{multirow}
 \usepackage[unicode,bookmarks=false,pdfstartview={FitW},colorlinks,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
