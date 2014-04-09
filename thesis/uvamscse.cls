@@ -1,6 +1,8 @@
 % Made by Dr. Vadim Zaytsev aka @grammarware
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{uvamscse}[2014/03/25 UvA MSc SE document class v1.0]
+% 2014/03/25 UvA MSc SE document class v1.0
+% 2014/04/09 UvA MSc SE document class v1.01 - bugfix
+\ProvidesClass{uvamscse}[2014/04/09 UvA MSc SE document class v1.01]
 \LoadClass[a4paper,10pt,oneside]{report}
 
 \setlength{\textwidth}{440pt}
@@ -83,10 +85,10 @@
   \begin{center}
   \begin{tabular}{r|l}
     \multirow{3}{*}{\includegraphics[height=48pt]{uva.pdf}}
-    &\textsc{\Large Universiteit vam Amsterdam}\\
+    &\textsc{\Large Universiteit van Amsterdam}\\
 	&\textsc{Faculteit der Natuurwetenschappen, Wiskunde en Informatica}\\
 	&\textsc{Master Software Engineering}\\
-	&\url{http://software-engineering-amsterdam.nl}
+	&\url{http://www.software-engineering-amsterdam.nl}
 		% Supervisor: Prof Dr P. Klint
   \end{tabular}
   \end{center}
