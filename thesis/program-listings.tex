@@ -1,0 +1,53 @@
+\usepackage{listings}
+
+\lstdefinelanguage{sdf}{%
+  numbers=none,
+  morekeywords={module,imports,exports,sorts,context,lexical,free,syntax,==,=,+,-,left,cons,prefer,avoid,bracket},
+  columns=flexible,
+  morestring=[b]",
+  basicstyle=\footnotesize\mdseries,
+  literate={->}{{\,\,$\to$\,\,}}1
+}
+
+\lstdefinelanguage{dcg}{%
+  numbers=none,
+  morekeywords={},
+  morestring=[b]",
+  basicstyle=\footnotesize\mdseries,
+  columns=flexible,
+}
+
+\lstdefinelanguage{prolog}{%
+  numbers=left,
+  morekeywords={},
+  morestring=[b]',
+  columns=flexible,
+  commentstyle=\sffamily\slshape,
+  morecomment=[l]{\%},
+  literate={:-}{{\,$\Leftarrow$\,\,}}1 {-->}{{$\to$\,}}1
+}
+
+\lstdefinestyle{mono}{
+  basicstyle=\footnotesize\ttfamily
+}
+
+\lstset{%
+  frame=none,
+  xleftmargin=2pt,
+  stepnumber=1,
+  numbers=left,
+  numbersep=7pt,
+  numberstyle=\ttfamily\scriptsize\color[gray]{0.3},
+  belowcaptionskip=\bigskipamount,
+  captionpos=b,
+%  escapeinside={*'}{'*},
+  % language=fl,
+  tabsize=2,
+  emphstyle={\bf},
+  stringstyle=\itshape,
+  showspaces=false,
+  keywordstyle=\bfseries\rmfamily,
+  columns=flexible,
+  basicstyle=\small\mdseries,
+  showstringspaces=false,
+}

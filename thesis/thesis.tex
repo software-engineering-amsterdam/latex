@@ -1,5 +1,6 @@
 \documentclass{uvamscse}
 
+\input{program-listings}
 \newcommand{\cmd}[1]{\texttt{$\backslash$#1}}
 
 \title{MetaThesis}
@@ -330,7 +331,109 @@ environments to know:
   \texttt{CD}           & commutative diagrams\\
 \end{tabular}
 \end{center}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Listings}
+
+\begin{sourcecode}
+\begin{lstlisting}[language=prolog]
+define(Ps1,G1,G2)
+ :-
+    usedNs(G1,Uses),
+    ps2n(Ps1,N),
+    require(
+      member(N,Uses),
+      'Nonterminal ~q must not be fresh.',
+      [N]),
+    new(Ps1,N,G1,G2),
+    !.
+\end{lstlisting}
+\caption{Code in Prolog}
+\end{sourcecode}
+
+\begin{sourcecode}
+\begin{lstlisting}[language=sdf]
+module Syntax
+
+imports Numbers
+imports basic/Whitespace
+
+exports
+  sorts
+    Program Function Expr Ops Name Newline
+
+  context-free syntax
+    Function+                          -> Program
+    Name Name+ "=" Expr Newline+       -> Function
+    Expr Ops Expr                      -> Expr      {left,prefer,cons(binary)}
+    Name Expr+                         -> Expr      {avoid,cons(apply)}
+    "if" Expr "then" Expr "else" Expr  -> Expr      {cons(ifThenElse)}
+    "(" Expr ")"                       -> Expr      {bracket}
+    Name                               -> Expr      {cons(argument)}
+    Int                                -> Expr      {cons(literal)}
+    "-"                                -> Ops       {cons(minus)}
+    "+"                                -> Ops       {cons(plus)}
+    "=="                               -> Ops       {cons(equal)}
+\end{lstlisting}
+\caption{Code in SDF}
+\end{sourcecode}
+
+\begin{sourcecode}
+\begin{lstlisting}[language=Java]
+import types.*;
+import org.antlr.runtime.*;
+
+public class TestEvaluator 
+    public static void main(String[] args) throws Exception {
+
+        // Parse file to program
+        ANTLRFileStream input = new ANTLRFileStream(args[0]);
+        FLLexer lexer = new FLLexer(input);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        FLParser parser = new FLParser(tokens);
+        Program program = parser.program();
+
+        // Parse sample expression
+        input = new ANTLRFileStream(args[1]);
+        lexer = new FLLexer(input);
+        tokens = new CommonTokenStream(lexer);
+        parser = new FLParser(tokens);
+        Expr expr = parser.expr();
+
+        // Evaluate program
+        Evaluator eval = new Evaluator(program);
+        int expected = Integer.parseInt(args[2]);
+\end{lstlisting}
+\caption{Code in Java}
+\end{sourcecode}
+
+\begin{sourcecode}
+\begin{lstlisting}[style=mono,language=Python]
+#!/usr/local/bin/python
+# wiki: BGF
+import os
+import sys
+import slpsns
+import elementtree.ElementTree as ET
+
+# root::nonterminal* production*
+class Grammar:
+  def __init__(self):
+    self.roots = []
+    self.prods = []
+  def parse(self,fname):
+    self.roots = []
+    self.prods = []
+    self.xml = ET.parse(fname)
+    for e in self.xml.findall('root'):
+      self.roots.append(e.text)
+    for e in self.xml.findall(slpsns.bgf_('production')):
+      prod = Production()
+      prod.parse(e)
+      self.prods.append(prod)
+\end{lstlisting}
+\caption{Code in Python}
+\end{sourcecode}
+
 \chapter{Literature}\label{sec:biblio}
 
 \textsc{Bib}TeX\ is a JSON-like format for bibliographic entries. Encode each
